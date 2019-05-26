@@ -386,6 +386,15 @@ module.exports = function(webpackEnv) {
                 ],
                 cacheDirectory: true,
                 cacheCompression: isEnvProduction,
+                plugins:[
+                  [
+                    require.resolve('babel-plugin-import'),// 导入 import 插件
+                    {
+                      libraryName: 'antd',   //暴露antd
+                      style: 'css'
+                    }
+                  ],
+                ],
                 
                 // If an error happens in a package, it's possible to be
                 // because it was compiled. Thus, we don't want the browser
