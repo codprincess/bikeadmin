@@ -87,6 +87,10 @@ module.exports = function(webpackEnv) {
         options: cssOptions,
       },
       {
+        loader:require.resolve('less-loader'),
+        options:lessOptions
+      },
+      {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in
         // package.json
@@ -469,9 +473,13 @@ module.exports = function(webpackEnv) {
             },
 
 
+
+
+
+
             {
-              test: sassRegex,
-              exclude: sassModuleRegex,
+              test: lessRegex,
+              exclude: lessModuleRegex,
               use: getStyleLoaders(
                 {
                   importLoaders: 3,
@@ -488,7 +496,7 @@ module.exports = function(webpackEnv) {
             // Adds support for CSS Modules, but using SASS
             // using the extension .module.scss or .module.sass
             {
-              test: sassModuleRegex,
+              test: lessModuleRegex,
               use: getStyleLoaders(
                 {
                   importLoaders: 3,
