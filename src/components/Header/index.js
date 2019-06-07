@@ -39,7 +39,7 @@ class Header extends Component {
     }
 
     render() {
-        const { menuName, menuType } = this.props;
+        const menuType = this.props.menuType;
         return (
             <div className="header">
                 <Row className="header-top">
@@ -51,9 +51,9 @@ class Header extends Component {
                         </Col>
                         :''
                     }
-                     <Col span={24}>
+                     <Col span={menuType?18:24}>
                         <span>欢迎,{this.state.userName}</span>
-                        <a></a>
+                        <a href="#" >退出</a>
                     </Col>
                    
                 </Row>
@@ -61,7 +61,7 @@ class Header extends Component {
                     menuType?'':
                     <Row className="breadcrumb">
                         <Col span={4} className="breadcrumb-title">
-                            {menuName || '首页'}
+                            首页
                         </Col>
                         <Col span={20} className="weather">
                             <span className="date">{this.state.sysTime}</span>
