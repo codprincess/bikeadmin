@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button, Table, Form, Select, Modal, DatePicker, message} from 'antd'
 import axios from '../../axios'
 import Utils from '../../utils/utils'
+import BaseForm from '../../components/BaseForm'
 const FormItem = Form.Item;
 const Option = Select.Option;
 class Order extends Component {
@@ -14,9 +15,39 @@ class Order extends Component {
     params = {
         page:1
     }
+    formList = [
+        {
+            type:'SELECT',
+            label:'城市',
+            field:'city',
+            placeholder:'全部',
+            initialValue:'1',
+            width:80,
+            list: [{ id: '0', name: '全部' }, { id: '1', name: '北京' }, { id: '2', name: '天津' }, { id: '3', name: '上海' }]
+        },
+        {
+            type: '时间查询'
+        },
+        {
+            type: 'SELECT',
+            label: '订单状态',
+            field:'order_status',
+            placeholder: '全部',
+            initialValue: '1',
+            width: 80,
+            list: [{ id: '0', name: '全部' }, { id: '1', name: '进行中' }, { id: '2', name: '结束行程' }]
+        }
+    ]
 
     componentDidMount(){
         this.requestList()
+    }
+
+    //获取查询表单数据
+    handleFilter = (params)=>{
+        this.params = params;
+        console.log(this.params);
+        this.requestList();
     }
 
     //请求订单数据
@@ -114,6 +145,10 @@ class Order extends Component {
                 dataIndex: 'user_pay'
             }
         ]
+        // const formItemLayout = {
+        //     labelCol:{span:5},
+        //     wrapperCol:{span:19}
+        // }
         const selectedRowKeys = this.state.selectedRowKeys;
         const rowSelection = {
             type: 'radio',
@@ -121,6 +156,9 @@ class Order extends Component {
         }
         return (
             <div>
+                 <Card>
+                    <BaseForm formList={this.formList} filterSubmit={this.handleFilter}/>
+                </Card>
                  <Card style={{marginTop:10}}>
                     <Button type="primary" onClick={this.openOrderDetail}>订单详情</Button>
                     {/* <Button type="primary" style={{marginLeft:10}} onClick={this.handleConfirm}>结束订单</Button> */}
