@@ -22,6 +22,7 @@ import City from './pages/city'
 import Common from './common'
 import OrderDetail from './pages/order/detail'
 import Order from './pages/order';
+import User from './pages/user';
 class IRouter extends Component {
     render() {
         return (
@@ -54,6 +55,7 @@ class IRouter extends Component {
                                     <Route path="/table/high" component={HighTable} />
                                     <Route path="/city" component={City} />
                                     <Route path="/order" component={Order} />
+                                    <Route path='/user' component={User} />
                                     <Route component={NoMatch} />
                                 </Switch>
                                 
