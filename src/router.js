@@ -23,6 +23,7 @@ import Common from './common'
 import OrderDetail from './pages/order/detail'
 import Order from './pages/order';
 import User from './pages/user';
+import BikeMap from './pages/map/bikeMap';
 class IRouter extends Component {
     render() {
         return (
@@ -56,6 +57,7 @@ class IRouter extends Component {
                                     <Route path="/city" component={City} />
                                     <Route path="/order" component={Order} />
                                     <Route path='/user' component={User} />
+                                    <Route path='/bikeMap' component={BikeMap} />
                                     <Route component={NoMatch} />
                                 </Switch>
                                 

@@ -24,7 +24,25 @@ class FilterForm extends Component {
                 let initialValue = item.initialValue || '';
                 let placeholder = item.placeholder;
                 let width = item.width;
-                if (item.type == '时间查询'){
+                if(item.type == '城市'){
+                    const city = <FormItem label="城市" key={field}>
+                    {
+                        getFieldDecorator('city',{
+                            initialValue:'0'
+                        })(
+                           <Select
+                                style = {{width:80}}
+                                placeholder = {placeholder}
+                                
+                           >
+                            {Utils.getOptionList([{id:'0',name:'全部'},{id:'1',name:'北京'},{id:'2',name:'天津'}])}
+                           </Select>
+                        )
+                    }
+                </FormItem>;
+                formItemList.push(city)
+                }
+                else if (item.type == '时间查询'){
                     const begin_time = <FormItem label="订单时间" key={field}>
                         {
                             getFieldDecorator('begin_time')(
